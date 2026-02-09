@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignoto - Sera ya Marejesho ya Fedha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #1a1a1a;
+            --gray-light: #f5f5f5;
+            --gray-mid: #666666;
+            --red-dark: #8B0000;
+            --green-dark: #006400;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 30px 0;
+            border-bottom: 2px solid var(--black);
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: var(--black);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .language-selector {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .document-header {
+            margin-bottom: 50px;
+            text-align: center;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 30px;
+        }
+
+        .document-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .document-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--gray-mid);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .document-date {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Important Notice */
+        .important-notice {
+            background-color: var(--gray-light);
+            border: 2px solid var(--black);
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .notice-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--red-dark);
+        }
+
+        .notice-icon {
+            font-size: 40px;
+            color: var(--red-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .section-content ul, .section-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: var(--gray-light);
+            padding: 2px 5px;
+            font-weight: 500;
+        }
+
+        .highlight-red {
+            background-color: #FFEBEE;
+            padding: 2px 5px;
+            font-weight: 500;
+            color: var(--red-dark);
+        }
+
+        .highlight-green {
+            background-color: #E8F5E9;
+            padding: 2px 5px;
+            font-weight: 500;
+            color: var(--green-dark);
+        }
+
+        /* Refund Status Boxes */
+        .refund-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .status-box {
+            border: 1px solid var(--gray-mid);
+            padding: 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .status-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .status-box.approved {
+            border-left: 5px solid var(--green-dark);
+        }
+
+        .status-box.denied {
+            border-left: 5px solid var(--red-dark);
+        }
+
+        .status-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-icon {
+            font-size: 20px;
+        }
+
+        .status-box.approved .status-icon {
+            color: var(--green-dark);
+        }
+
+        .status-box.denied .status-icon {
+            color: var(--red-dark);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 40px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--black);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -23px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--black);
+            border: 2px solid var(--white);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-desc {
+            color: var(--gray-mid);
+            font-size: 14px;
+        }
+
+        /* Process Table */
+        .process-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .process-table th,
+        .process-table td {
+            border: 1px solid var(--gray-mid);
+            padding: 15px;
+            text-align: left;
+        }
+
+        .process-table th {
+            background-color: var(--gray-light);
+            font-weight: 600;
+        }
+
+        .process-table tr:nth-child(even) {
+            background-color: var(--gray-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray-dark);
+            color: var(--white);
+            padding: 40px 0;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-info {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            header {
+                position: static;
+                box-shadow: none;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 30px 0;
+            }
+            
+            footer {
+                background-color: var(--white);
+                color: var(--black);
+                border-top: 1px solid var(--black);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .document-title {
+                font-size: 32px;
+            }
+            
+            .document-subtitle {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .refund-status {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .document-title {
+                font-size: 28px;
+            }
+            
+            .section-content {
+                font-size: 15px;
+            }
+            
+            .important-notice {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">IGNOTO</div>
+                        <div class="tagline">Sera ya Marejesho ya Fedha</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="document-header">
+                <h1 class="document-title">SERA YA MAREJESHO YA FEDHA</h1>
+                <p class="document-subtitle">Hii sera inaelezea masharti na masharti ya kufanya marejesho ya fedha kwa wateja wa Ignoto. Tafadhali soma kwa makini kabla ya kuomba marejesho.</p>
+                <div class="document-date">Toleo la 1.0.7 | Tarehe: 10 Januari 2026</div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="important-notice">
+                <div class="notice-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2 class="notice-title">TAARIFA MUHIMU KWA WATEJA</h2>
+                <p>Ignoto inatoa huduma ya usindikizi wa takwimu ambayo inaanza mara tu baada ya malipo. Kwa hiyo, marejesho ya fedha yanakubaliwa tu chini ya hali maalum zilizoelezewa hapa chini. Tunaomba uisome sera hii kwa makini kabla ya kufanya malipo.</p>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2 class="section-title">1. KANUNI ZA MSINGI ZA MAREJESHO</h2>
+                <div class="section-content">
+                    <p>Ignoto inafuata kanuni zifuatazo kuhusu marejesho ya fedha:</p>
+                    
+                    <div class="refund-status">
+                        <div class="status-box approved">
+                            <div class="status-title">
+                                <i class="fas fa-check-circle status-icon"></i>
+                                MAREJESHO YANAYOKUBALIKA
+                            </div>
+                            <ul>
+                                <li>Kosa la kiufundi linalozuia utoaji kamili wa huduma</li>
+                                <li>Makosa ya malipo yaliyofanywa mara mbili</li>
+                                <li>Kiwango kisichokubalika cha huduma kwa zaidi ya siku 2 mfululizo</li>
+                                <li>Kufutwa kwa huduma ndani ya masaa 24 ya kwanza baada ya malipo (angalia sehemu 2)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="status-box denied">
+                            <div class="status-title">
+                                <i class="fas fa-times-circle status-icon"></i>
+                                MAREJESHO YASIOKUBALIKA
+                            </div>
+                            <ul>
+                                <li>Kubadilisha nia baada ya kupokea huduma</li>
+                                <li>Kutopata matokeo unayotarajia kutokana na matumizi ya takwimu zetu</li>
+                                <li>Kutofika kwa viwango vya ushindi vya kibinafsi</li>
+                                <li>Matatizo ya kibinafsi au mazingira yasiyohusiana na utoaji wa huduma</li>
+                                <li>Kutofuata masharti ya matumizi ya huduma</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p><span class="highlight-red">MUHIMU:</span> Huduma ya Ignoto inahusisha usambazaji wa taarifa za takwimu ambazo mteja anapokea mara tu baada ya malipo. Kwa sababu hii, marejesho hayawezi kufanywa kwa sababu za kubadilisha nia au kutokufurahishwa na takwimu zilizotolewa.</p>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2 class="section-title">2. KIPINDI CHA KUFUTWA BILA MALIPO</h2>
+                <div class="section-content">
+                    <p>Ignoto inatoa kipindi cha <span class="highlight-green">masaa 24</span> cha kufutwa bila malipo kwa wateja wapya tu:</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-title">Saa 0: Malipo Yanafanyika</div>
+                            <div class="timeline-desc">Mteja anafanya malipo na akaunti inaanza mara moja</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-title">Saa 1-24: Kipindi cha Kufutwa Bila Malipo</div>
+                            <div class="timeline-desc">Mteja anaweza kuomba kufutwa kwa huduma na marejesho kamili ya fedha</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-title">Baada ya Saa 24: Masharti ya Kawaida Yanatumika</div>
+                            <div class="timeline-desc">Marejesho yanafuata kanuni za kawaida zilizoelezewa katika sera hii</div>
+                        </div>
+                    </div>
+                    
+                    <p><span class="highlight">Masharti ya Kipindi cha Kufutwa Bila Malipo:</span></p>
+                    <ul>
+                        <li>Inatumika kwa wateja wapya tu (wale ambao hawajawahi kujiandikisha hapo awali)</li>
+                        <li>Ombi la kufutwa lazima lifanywe ndani ya masaa 24 kamili baada ya malipo</li>
+                        <li>Ombi lazima liwasilishwe kwa maandishi kupitia barua pepe ya kusaidia</li>
+                        <li>Marejesho yatakamilishwa ndani ya siku 7 za kazi baada ya ombi kukubaliwa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2 class="section-title">3. MCHAKATO WA KUOMBA MAREJESHO</h2>
+                <div class="section-content">
+                    <p>Ikiwa unafikiri una haki ya marejesho, fuata hatua hizi:</p>
+                    
+                    <table class="process-table">
+                        <thead>
+                            <tr>
+                                <th>Hatua</th>
+                                <th>Kitendo</th>
+                                <th>Muda wa Kukamilika</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Wasilisha ombi la maandishi kupitia <span class="highlight">marejesho@ignoto.co.tz</span> ukijumuisha:
+                                    <ul style="margin-top: 10px;">
+                                        <li>Jina lako kamili</li>
+                                        <li>Anwani ya barua pepe iliyotumika kujiandikisha</li>
+                                        <li>Tarehe na kiasi cha malipo</li>
+                                        <li>Sababu za kufanya ombi la marejesho</li>
+                                        <li>Usaidizi wowote unaouonyesha sababu zako (picha, skrini nk)</li>
+                                    </ul>
+                                </td>
+                                <td>Siku 1 ya kazi</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tutakuthibitishia kupokea ombi lako na kukupa nambari ya kufuatilia ombi</td>
+                                <td>Siku 1 ya kazi baada ya kupokea</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Timu yetu itachunguza ombi lako na kukupa majibu</td>
+                                <td>Siku 3-5 za kazi</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Ikiwa ombi lako linakubaliwa, tutafanya marejesho kupitia njia ile ile uliyolipia</td>
+                                <td>Siku 7-10 za kazi baada ya idhini</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p><span class="highlight-red">MUHIMU:</span> Usiombe marejesho kupitia mfumo wa malipo (kama PayPal, stripe n.k) bila kwanza kujaribu kutatua suala nasi. Hii inaweza kusababisha akaunti yako kufungiwa na watoa huduma wa malipo.</p>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2 class="section-title">4. MAREJESHO YA SEHEMU</h2>
+                <div class="section-content">
+                    <p>Katika hali zingine, Ignoto inaweza kukupa marejesho ya sehemu:</p>
+                    
+                    <div class="refund-status">
+                        <div class="status-box approved">
+                            <div class="status-title">
+                                <i class="fas fa-percentage status-icon"></i>
+                                MAREJESHO YA SEHEMU YA 50%
+                            </div>
+                            <p>Ikitokea matatizo ya kiufundi yanayozuia utoaji kamili wa huduma kwa zaidi ya siku 3-7 mfululizo, tutafanya marejesho ya sehemu ya 50% ya malipo ya mwezi huo.</p>
+                        </div>
+                        
+                        <div class="status-box approved">
+                            <div class="status-title">
+                                <i class="fas fa-calendar-alt status-icon"></i>
+                                MAREJESHO YA SEHEMU KULINGANA NA SIKU
+                            </div>
+                            <p>Katika kesi ya kufutwa kwa sababu za kipekee zilizoidhinishwa na usimamizi, marejesho yatahesabiwa kwa mujibu wa siku zilizobaki katika mwezi huo.</p>
+                        </div>
+                    </div>
+                    
+                    <p><span class="highlight">Mfumo wa Hesabu:</span> Ikiwa utaomba kufutwa katika wiki ya 2 ya mwezi, na kuna sababu za kipekee zilizoidhinishwa, tutahesabu marejesho kama ifuatavyo:</p>
+                    
+                    <p style="text-align: center; background-color: var(--gray-light); padding: 15px; margin: 20px 0;">
+                        <strong>Marejesho = (Bei ya Mwezi ÷ 30) × Idadi ya Siku Zilizobaki</strong>
+                    </p>
+                    
+                    <p>Kwa mfano, ikiwa bei ya mwezi ni TZS15,000 na una siku 20 zilizobaki: (TZS15,000 ÷ 30) × 20 = TZS10,000</p>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2 class="section-title">5. MAREJESHO KWA USAJILI WA ROBO MWAKA NA MWAKA MZIMA</h2>
+                <div class="section-content">
+                    <p>Kwa wateja waliojisajili kwa mipango ya robo mwaka (miezi 3) au mwaka mzima (miezi 12), sera ya marejesho ni tofauti kidogo:</p>
+                    
+                    <ul>
+                        <li><span class="highlight">Kipindi cha Kwanza cha Robo Mwaka:</span> Ikiwa utaomba kufutwa ndani ya siku 7 za kwanza, tutakurejeshea 75% ya malipo yako.</li>
+                        <li><span class="highlight">Baada ya Siku 7:</span> Hakuna marejesho ya moja kwa moja. Hata hivyo, tutakupa salio la siku zilizobaki kama salio la kredit kwenye akaunti yako kwa usajili wa baadaye.</li>
+                        <li><span class="highlight">Usajili wa Mwaka Mzima:</span> Ikiwa utaomba kufutwa ndani ya siku 14 za kwanza, tutakurejeshea 50% ya malipo yako. Baada ya siku 14, hakuna marejesho ya fedha lakini tutakupa kredit kulingana na siku zilizobaki.</li>
+                    </ul>
+                    
+                    <p><span class="highlight-red">ONYO:</span> Kumbuka kuwa unapokwepa bei kwa kuchagua mipango ya muda mrefu, unapata faida ya bei lakini pia unakubali masharti magumu zaidi ya marejesho.</p>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2 class="section-title">6. MUDO WA KUPOKEA MAREJESHO</h2>
+                <div class="section-content">
+                    <p>Marejesho yatatolewa kupitia njia ile ile uliyotumia kulipa. Muda wa kupokea marejesho hutegemea njia ya malipo:</p>
+                    
+                    <table class="process-table">
+                        <thead>
+                            <tr>
+                                <th>Njia ya Malipo</th>
+                                <th>Muda wa Kukamilika</th>
+                                <th>Maelezo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kadi ya Krediti/ Debiti</td>
+                                <td>Siku 5-10 za kazi</td>
+                                <td>Marejesho yataonekana kwenye akaunti yako kulingana na sera ya benki yako</td>
+                            </tr>
+                            <tr>
+                                <td>PayPal</td>
+                                <td>Siku 3-7 za kazi</td>
+                                <td>Marejesho yatatumwa moja kwa moja kwenye akaunti yako ya PayPal</td>
+                            </tr>
+                            <tr>
+                                <td>Mitandao ya Simu (M-Pesa, Tigo Pesa n.k)</td>
+                                <td>Siku 1-3 za kazi</td>
+                                <td>Marejesho yatatumwa kwa nambari ya simu uliyotumia kulipa</td>
+                            </tr>
+                            <tr>
+                                <td>Malipo ya Benki</td>
+                                <td>Siku 7-14 za kazi</td>
+                                <td>Muda hutegemea sera ya benki na mchakato wa ndani</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p><span class="highlight">Kumbuka:</span> Wakati mwingine mfumo wa malipo unaweza kuchukua malipo ya kukutoa malipo (kati ya 2-5%). Katika kesi hiyo, tutakurejeshea kiasi kamili tulichopokea, na malipo ya kukutoa malipo yatakua ni yako.</p>
+                </div>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="section">
+                <h2 class="section-title">7. HAKI ZA IGNOTO</h2>
+                <div class="section-content">
+                    <p>Ignoto ina haki za kufuata zifuatazo:</p>
+                    
+                    <ul>
+                        <li>Kukataa ombi lolote la marejesho linalokiuka masharti ya sera hii</li>
+                        <li>Kufuta akaunti ya mteja anayejaribu kutumia udanganyifu au kuvunja masharti ya huduma</li>
+                        <li>Kubadilisha sera hii ya marejesho wakati wowote kwa kuwatangazia wateja kwa njia zinazofaa</li>
+                        <li>Kuhifadhi rekodi za malipo na marejesho kwa muda wa miaka 7 kwa madhumuni ya kukutimilia wajibu wa kifedha na kisheria</li>
+                        <li>Kutoa huduma kwa wateja walio na ombi la marejesho linasubiriwa tu kwa kiwango cha msingi</li>
+                    </ul>
+                    
+                    <p>Ignoto haiwajibiki kwa hasara zozote za moja kwa moja, zisizo wa moja kwa moja, au hasara maalum zinazotokana na:</p>
+                    
+                    <ul>
+                        <li>Matumizi au kutoweza kutumia huduma zetu</li>
+                        <li>Ucheleweshaji au kukatizwa kwa huduma kutokana na sababu zozote</li>
+                        <li>Uvujaji wa taarifa kutokana na sababu zisizokuwa chini ya udhibiti wetu</li>
+                        <li>Uamuzi wowote wa kisheria unaohusiana na matumizi ya takwimu tulizotoa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2 class="section-title">8. MAWASILIANO NA USAIDIZI</h2>
+                <div class="section-content">
+                    <p>Kwa maswali yoyote kuhusu sera hii ya marejesho au kwa kuomba marejesho, tafadhali wasiliana nasi kupitia:</p>
+                    
+                    <div style="background-color: var(--gray-light); padding: 25px; margin: 20px 0;">
+                        <p><strong>Barua pepe ya Marejesho:</strong> maxterhamid@gmail.com</p>
+                        <p><strong>Simu ya Usaidizi:</strong> +255 (0) 749 246 701 (Saa 9 asubuhi - 5 jioni, Jumatatu - Ijumaa)</p>
+                        
+                        <p><strong>Msimamizi wa Marejesho:</strong> Mr. Gaiz Kisho</p>
+                    </div>
+                    
+                    <p>Tunakuhimiza kwanza kujaribu kutatua suala lolote la huduma kupitia usaidizi wa kawaida kabla ya kuomba marejesho. Mara nyingi, tunaweza kutatua matatizo kwa haraka zaidi kuliko mchakato wa marejesho.</p>
+                    
+                    <div class="important-notice" style="margin-top: 40px;">
+                        <h2 class="notice-title">UHALALISHAJI WA MWISHO</h2>
+                        <p>KWA KUFANYA MALIPO YA USAJILI WA IGNOTO, UNAKUBALI NA KUTHIBITISHA KUWA:</p>
+                        <ol style="text-align: left; margin-top: 15px;">
+                            <li>Umesoma na kuelewa sera hii ya marejesho ya fedha</li>
+                            <li>Unakubali masharti yote yaliyowekwa hapa juu</li>
+                            <li>Unajua kuwa huduma inaanza mara tu baada ya malipo na hakuna marejesho ya kawaida kwa kubadilisha nia</li>
+                            <li>Unakubali kuwa Ignoto haiwajibiki kwa matokeo ya matumizi ya takwimu tulizotoa</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">IGNOTO</div>
+                <div class="footer-info">
+                    <p>© 2026 Incognito. Haki zote zimehifadhiwa.</p>
+                    <p>Huduma ya Kitaalamu ya Uchambuzi wa Takwimu za Kamari</p>
+                    <p>Sera ya Marejesho - Toleo la 1.0.7, tarehe 10 Januari 2026</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to handle printing
+        function printDocument() {
+            window.print();
+        }
+
+        // Function to calculate refund example
+        function calculateRefund() {
+            const price = 15000;
+            const days = 20;
+            const refund = (price / 30) * days;
+            alert(`Mfano wa hesabu ya marejesho:\n\nBei ya Mwezi: TZS${price}\nSiku Zilizobaki: ${days}\nMarejesho: (TZS${price} ÷ 30) × ${days} = TZS${refund.toFixed(2)}`);
+        }
+
+        // Add print button dynamically for non-print view
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                z-index: 99;
+            `;
+            
+            const printButton = document.createElement('button');
+            printButton.innerHTML = '<i class="fas fa-print"></i> Print/Download';
+            printButton.style.cssText = `
+                background-color: #000;
+                color: #fff;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            `;
+            
+            const calcButton = document.createElement('button');
+            calcButton.innerHTML = '<i class="fas fa-calculator"></i> Kikokotoo cha Marejesho';
+            calcButton.style.cssText = `
+                background-color: #666;
+                color: #fff;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            `;
+            
+            printButton.onclick = printDocument;
+            printButton.onmouseover = function() {
+                this.style.backgroundColor = '#333';
+            };
+            printButton.onmouseout = function() {
+                this.style.backgroundColor = '#000';
+            };
+            
+            calcButton.onclick = calculateRefund;
+            calcButton.onmouseover = function() {
+                this.style.backgroundColor = '#333';
+            };
+            calcButton.onmouseout = function() {
+                this.style.backgroundColor = '#666';
+            };
+            
+            buttonContainer.appendChild(printButton);
+            buttonContainer.appendChild(calcButton);
+            document.body.appendChild(buttonContainer);
+            
+            // Add responsive behavior for buttons
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    buttonContainer.style.bottom = '20px';
+                    buttonContainer.style.right = '20px';
+                    printButton.style.padding = '10px 16px';
+                    printButton.style.fontSize = '13px';
+                    calcButton.style.padding = '10px 16px';
+                    calcButton.style.fontSize = '13px';
+                } else {
+                    buttonContainer.style.bottom = '30px';
+                    buttonContainer.style.right = '30px';
+                    printButton.style.padding = '12px 20px';
+                    printButton.style.fontSize = '14px';
+                    calcButton.style.padding = '12px 20px';
+                    calcButton.style.fontSize = '14px';
+                }
+            });
+            
+            // Trigger initial resize
+            window.dispatchEvent(new Event('resize'));
+        });
+    </script>
+</body>
+</html>

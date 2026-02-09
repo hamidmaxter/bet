@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignoto - Sera ya Faragha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #1a1a1a;
+            --gray-light: #f5f5f5;
+            --gray-mid: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 30px 0;
+            border-bottom: 2px solid var(--black);
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: var(--black);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .language-selector {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .document-header {
+            margin-bottom: 50px;
+            text-align: center;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 30px;
+        }
+
+        .document-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .document-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--gray-mid);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .document-date {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .section-content ul, .section-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: var(--gray-light);
+            padding: 2px 5px;
+            font-weight: 500;
+        }
+
+        /* Definition Lists */
+        .definition-list {
+            margin-bottom: 30px;
+        }
+
+        .definition-term {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .definition-description {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--gray-mid);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background-color: var(--gray-light);
+            border-left: 4px solid var(--black);
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .warning-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray-dark);
+            color: var(--white);
+            padding: 40px 0;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-info {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            header {
+                position: static;
+                box-shadow: none;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 30px 0;
+            }
+            
+            footer {
+                background-color: var(--white);
+                color: var(--black);
+                border-top: 1px solid var(--black);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .document-title {
+                font-size: 32px;
+            }
+            
+            .document-subtitle {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .document-title {
+                font-size: 28px;
+            }
+            
+            .section-content {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                   
+                    <div>
+                        <div class="logo-text">IGNOTO</div>
+                        <div class="tagline">Timu ya Wataalamu wa uchambuzi wa takwimu za mpira</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="document-header">
+                <h1 class="document-title">SERA YA FARAGHA</h1>
+                <p class="document-subtitle">Hii sera inaelezea jinsi tunavyokusanya, kutumia, na kulinda taarifa zako binafsi unapotumia huduma za Ignoto.</p>
+                <div class="document-date">Toleo la 1.0.3 | Tarehe: 12 Machi 2024</div>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2 class="section-title">1. UTANGULIZI</h2>
+                <div class="section-content">
+                    <p>Ignoto inathamini faragha yako na tunaahidi kulinda taarifa zako binafsi. Sera hii ya faragha inaelezea aina za taarifa tunazokusanya, jinsi tunavyozitumia, na haki zako kuhusiana na taarifa hizi.</p>
+                    
+                    <p>Kwa kutumia huduma zetu, unakubali mkusanyiko na matumizi ya taarifa zako kama ilivyoelezewa katika sera hii. Tunasistiza kuwa hatuuzi, haushiriki, au kuuza taarifa za kibinafsi kwa washirika wetu wa kibiashara.</p>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            ONYO MUHIMU
+                        </div>
+                        <p>Huduma ya Ignoto imekusudiwa kwa watu wenye umri wa miaka 18 na zaidi. Hatukusanyi taarifa kutoka kwa watoto, na ikiwa tunaona kuwa umekupa taarifa ya mtoto, tutafuta mara moja kutoa taarifa hiyo kwenye mifumo yetu.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2 class="section-title">2. TAARIFA TUNAZOKUSANYA</h2>
+                <div class="section-content">
+                    <p>Tunakusanya aina mbalimbali za taarifa ili kutoa na kuboresha huduma zetu:</p>
+                    
+                    <div class="definition-list">
+                        <div class="definition-term">2.1 Taarifa za Kibinafsi</div>
+                        <div class="definition-description">
+                            <ul>
+                                <li>Jina kamili</li>
+                                <li>Anwani ya barua pepe</li>
+                                <li>Nambari ya simu (hiari)</li>
+                                <li>Tarehe ya kuzaliwa (kuthibitisha umri)</li>
+                                <li>Nchi na mkoa wa makazi</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="definition-term">2.2 Taarifa za Akaunti</div>
+                        <div class="definition-description">
+                            <ul>
+                                <li>Jina la mtumiaji (username)</li>
+                                <li>Nywila (imehifadhiwa kwa njia ya salasala)</li>
+                                <li>Historia ya malipo</li>
+                                <li>Usajili wa huduma na muda wake</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="definition-term">2.3 Taarifa za Matumizi</div>
+                        <div class="definition-description">
+                            <ul>
+                                <li>Wakati na tarehe ya kuingia kwenye mfumo</li>
+                                <li>Vitendo ulivyofanya kwenye tovuti yetu</li>
+                                <li>Viungo na kurasa ulizozipitia</li>
+                                <li>Taarifa za kifaa (aina ya kifaa, kivinjari, mfumo wa uendeshaji)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="definition-term">2.4 Cookies na Teknolojia Zinazofanana</div>
+                        <div class="definition-description">
+                            <p>Tunatumia cookies na teknolojia zinazofanana kuboresha uzoefu wako. Cookies ni faili ndogo zinazohifadhiwa kwenye kifaa chako. Unaweza kuzima cookies katika mipangilio ya kivinjari chako, lakini hii inaweza kupunguza utendaji wa baadhi ya vipengele vya tovuti yetu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2 class="section-title">3. JINSI TUNAVYOTUMIA TAARIFA ZAKO</h2>
+                <div class="section-content">
+                    <p>Tunatumia taarifa zako kwa madhumuni yafuatayo:</p>
+                    
+                    <ol>
+                        <li><span class="highlight">Kutoa Huduma:</span> Kutumia taarifa zako kukutolea huduma ulizojisajili, ikiwemo usambazaji wa odds na uchambuzi.</li>
+                        <li><span class="highlight">Mawasiliano:</span> Kukutumia arifa kuhusu huduma zetu, mabadiliko ya masharti, au matangazo muhimu.</li>
+                        <li><span class="highlight">Uboreshaji wa Huduma:</span> Kuchambua matumizi ya huduma zetu ili kuboresha ubora na utendaji.</li>
+                        <li><span class="highlight">Usalama:</span> Kulinda akaunti yako na kuzuia matumizi yasiyoidhinishwa au ya udanganyifu.</li>
+                        <li><span class="highlight">Ushauri wa Kisheria:</span> Kukutimiza majukumu yetu ya kisheria na kulinda haki zetu.</li>
+                    </ol>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-lock"></i>
+                            USALAMA WA TAARIFA
+                        </div>
+                        <p>Hatutumii taarifa zako kwa madhumuni ya kukupa matangazo ya wahusika wengine. Matumizi ya taarifa zako yanakua kwa madhumuni ya kukutoa huduma ya Ignoto tu, na hatutoi taarifa zako kwa kampuni zingine kwa madhumuni ya uuzaji.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2 class="section-title">4. KUSHIRIKI TAARIFA NA WAHUSIKA WA TATU</h2>
+                <div class="section-content">
+                    <p>Kwa kanuni, hatushiriki taarifa zako binafsi na wahusika wa tatu. Hata hivyo, kuna hali chache ambazo tunaweza kushiriki baadhi ya taarifa:</p>
+                    
+                    <ul>
+                        <li><span class="highlight">Watoa Huduma:</span> Wahusika wa tatu wanaotuhudumia kwa mfumo wa malipo, usalama, au usambazaji wa huduma.</li>
+                        <li><span class="highlight">Sheria:</span> Ikiwa tunahitajika kisheria kufanya hivyo, kama ilivyoagizwa na mahakama au mamlaka ya kisheria.</li>
+                        <li><span class="highlight">Ulinzi wa Haki:</span> Kulinda haki, mali, au usalama wa Ignoto, wateja wetu, au wengine.</li>
+                        <li><span class="highlight">Ushirikiano wa Biashara:</span> Katika tukio la kuunganishwa, kununuliwa, au mauzo ya sehemu ya biashara yetu.</li>
+                    </ul>
+                    
+                    <p>Wahusika wa tatu tunowaamini wana sera za faragha zinazolinda taarifa na wanafanya kazi kwa mujibu wa kanuni za usalama tulizoweka.</p>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2 class="section-title">5. HIJADHAA YA TAARIFA</h2>
+                <div class="section-content">
+                    <p>Tunahifadhi taarifa zako kwa muda unaohitajika kukutimizia madhumuni yaliyoelezwa katika sera hii. Muda wa kuhifadhi hutegemea aina ya taarifa:</p>
+                    
+                    <ul>
+                        <li><span class="highlight">Taarifa za Akaunti:</span> Tunahifadhi hadi akaunti yako ifutwe na wewe mwenyewe.</li>
+                        <li><span class="highlight">Taarifa za Malipo:</span> Tunahifadhi kwa angalau miaka 7 ili kukutimilia wajibu wetu wa kifedha na kisheria.</li>
+                        <li><span class="highlight">Taarifa za Matumizi:</span> Tunahifadhi kwa miezi 24 kwa madhumuni ya uchambuzi na uboreshaji.</li>
+                    </ul>
+                    
+                    <p>Baada ya muda unaofaa, tutafuta au kutoa vitambulisho vya taarifa zako ili zisiweze kutambulika tena.</p>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2 class="section-title">6. HAKI ZAKO KUHUSU TAARIFA</h2>
+                <div class="section-content">
+                    <p>Kama mteja wa Ignoto, una haki zifuatazo kuhusiana na taarifa zako binafsi:</p>
+                    
+                    <div class="definition-list">
+                        <div class="definition-term">6.1 Haki ya Kupata Taarifa</div>
+                        <div class="definition-description">Unaweza kuomba kupata nakala ya taarifa zako binafsi tulizonazo.</div>
+                        
+                        <div class="definition-term">6.2 Haki ya Kusahihisha</div>
+                        <div class="definition-description">Unaweza kutuhimiza kusahihisha taarifa zako ikiwa sio sahihi au hazijaambatana.</div>
+                        
+                        <div class="definition-term">6.3 Haki ya Kufutwa</div>
+                        <div class="definition-description">Unaweza kuomba kufutwa kwa taarifa zako binafsi, isipokuwa pale tunapohitaji kuzihifadhi kwa sababu za kisheria au za usalama.</div>
+                        
+                        <div class="definition-term">6.4 Haki ya Kukataa Usindikaji</div>
+                        <div class="definition-description">Unaweza kukataa usindikaji fulani wa taarifa zako, ingawa hii inaweza kuathiri utoaji wa huduma zetu kwako.</div>
+                        
+                        <div class="definition-term">6.5 Haki ya Kuhamisha Data</div>
+                        <div class="definition-description">Unaweza kuomba kupewa taarifa zako kwa umbizo linaloweza kusomwa na mashine.</div>
+                    </div>
+                    
+                    <p>Ili kutekeleza haki zako, tafadhali wasiliana nasi kupitia barua pepe: <span class="highlight">faragha@ignoto.co.tz</span>. Tutajibu maombi yako ndani ya siku 30.</p>
+                </div>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="section">
+                <h2 class="section-title">7. USALAMA WA TAARIFA</h2>
+                <div class="section-content">
+                    <p>Ignoto inachukua hatua muhimu za kuhakikisha usalama wa taarifa zako:</p>
+                    
+                    <ul>
+                        <li><span class="highlight">Usimbaji wa Data:</span> Taarifa nyeti zinahifadhiwa kwa njia ya usimbaji (encryption).</li>
+                        <li><span class="highlight">Ufikiaji Mdogo:</span> Wafanyakazi wanaoihitaji tu ndio wanaoruhusiwa kufikia taarifa za kibinafsi.</li>
+                        <li><span class="highlight">Mifumo ya Usalama:</span> Tunatumia kuta za moto (firewalls) na mifumo ya kuzuia uvamizi.</li>
+                        <li><span class="highlight">Mafunzo ya Wafanyakazi:</span> Wafanyakazi wetu wanapata mafunzo ya kuhusu usalama wa data na faragha.</li>
+                        <li><span class="highlight">Ukaguzi wa Mara kwa Mara:</span> Tunafanya ukaguzi wa mara kwa mara wa mifumo yetu ya usalama.</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-shield-alt"></i>
+                            UJITEGEMEZI WA MTUMIAJI
+                        </div>
+                        <p>Wewe pia una jukumu la kulinda taarifa zako. Tafadhali hakikisha kuwa:</p>
+                        <ul>
+                            <li>Unatumia nywila ngumu na tofauti kwa akaunti zako</li>
+                            <li>Hushiriki nywila zako na mtu yeyote</li>
+                            <li>Unaacha kutumia kompyuta ya umma baada ya kuingia kwenye mfumo wetu</li>
+                            <li>Unaarifu mara moja ikiwa utagundua shughuli zozote zisizokuwa za kawaida kwenye akaunti yako</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2 class="section-title">8. VIUNGO VYA NJE</h2>
+                <div class="section-content">
+                    <p>Tovuti yetu inaweza kuwa na viungo vya tovuti nyingine ambazo si chini ya udhibiti wetu. Sera hii ya faragha haitumiki kwa tovuti hizo. Tunapendekeza usome sera za faragha za tovuti hizo kabla ya kutoa taarifa zako binafsi.</p>
+                    
+                    <p>Ignoto haiwajibiki kwa yaliyomo, sera za faragha, au matendo ya tovuti za wahusika wa tatu.</p>
+                </div>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="section">
+                <h2 class="section-title">9. MABADILIKO YA SERA HII</h2>
+                <div class="section-content">
+                    <p>Tunaweza kusasisha sera hii ya faragha mara kwa mara ili kuakisi mabadiliko ya mazoea yetu, sheria, au kanuni. Tutawatangazia wateja kuhusu mabadiliko makubwa kupitia:</p>
+                    
+                    <ul>
+                        <li>Barua pepe kwa anwani yako iliyorekodiwa</li>
+                        <li>Tangazo kwenye tovuti yetu</li>
+                        <li>Ujumbe ndani ya programu yetu (ikiwa unaitumia)</li>
+                    </ul>
+                    
+                    <p>Tarehe ya uboreshaji wa mwisho itaonyeshwa hapo juu kwenye hati hii. Kuendelea kutumia huduma zetu baada ya mabadiliko haya kunamaanisha kukubali sera hii ya faragha kwa toleo lake jipya.</p>
+                </div>
+            </div>
+
+            <!-- Section 10 -->
+            <div class="section">
+                <h2 class="section-title">10. MAWASILIANO</h2>
+                <div class="section-content">
+                    <p>Ikiwa una maswali yoyote kuhusu sera hii ya faragha au unahitaji kutekeleza haki zako kuhusiana na data, tafadhali wasiliana nasi kupitia:</p>
+                    
+                    <p><strong>Barua pepe ya Faragha:</strong> maaxterhamid2gmail.com</p>
+                    <p><strong>Simu:</strong> +255 (0) 749 246 701</p>
+                    
+                    <p><strong>Mkuu wa Ulinzi wa Data:</strong> Abdul H. Ismael</p>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-handshake"></i>
+                            KUKUBALIANA NA SERA
+                        </div>
+                        <p>Kwa kutumia huduma za Ignoto, unakubali na kuthibitisha kuwa:</p>
+                        <ol>
+                            <li>Umesoma na kuelewa sera hii ya faragha</li>
+                            <li>Unakubali mkusanyiko na matumizi ya taarifa zako kama ilivyoelezwa hapa</li>
+                            <li>Unafahamu haki zako kuhusiana na taarifa zako</li>
+                            <li>Unajua jinsi ya kuwasiliana nasi kuhusu maswala ya faragha</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">IGNOTO</div>
+                <div class="footer-info">
+                    <p>© 2026 Ignoto. Haki zote zimehifadhiwa.</p>
+                    <p>Huduma ya Kitaalamu ya Uchambuzi wa Takwimu za Kamari</p>
+                    <p>Sera ya Faragha - Toleo la 1.0.3, tarehe 12 machi 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to handle printing
+        function printDocument() {
+            window.print();
+        }
+
+        // Add print button dynamically for non-print view
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.createElement('button');
+            printButton.innerHTML = '<i class="fas fa-print"></i> Print/Download';
+            printButton.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background-color: #000;
+                color: #fff;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                z-index: 99;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            `;
+            
+            printButton.onclick = printDocument;
+            printButton.onmouseover = function() {
+                this.style.backgroundColor = '#333';
+            };
+            printButton.onmouseout = function() {
+                this.style.backgroundColor = '#000';
+            };
+            
+            document.body.appendChild(printButton);
+            
+            // Add responsive behavior for print button
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    printButton.style.bottom = '20px';
+                    printButton.style.right = '20px';
+                    printButton.style.padding = '10px 16px';
+                    printButton.style.fontSize = '13px';
+                } else {
+                    printButton.style.bottom = '30px';
+                    printButton.style.right = '30px';
+                    printButton.style.padding = '12px 20px';
+                    printButton.style.fontSize = '14px';
+                }
+            });
+            
+            // Trigger initial resize
+            window.dispatchEvent(new Event('resize'));
+        });
+    </script>
+</body>
+</html>

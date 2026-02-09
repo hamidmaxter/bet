@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignoto | Premium Daily Odds</title>
+    <meta name="description" content="Get premium daily odds and betting predictions. Expert analysis and accurate forecasts for your winning bets.">
+    <meta name="keywords" content="daily odds, betting predictions, sports odds, premium odds, betting analysis">
+    <meta name="author" content="Ignoto">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ignoto.com/">
+    <meta property="og:title" content="Ignoto | Premium Daily Odds">
+    <meta property="og:description" content="Get premium daily odds and betting predictions. Expert analysis and accurate forecasts for your winning bets.">
+    <meta property="og:site_name" content="Ignoto">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ignoto | Premium Daily Odds">
+    <meta name="twitter:description" content="Get premium daily odds and betting predictions. Expert analysis and accurate forecasts for your winning bets.">
+    <link rel="canonical" href="https://ignoto.com/">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4af37;
+            --primary-dark: #aa8c2b;
+            --accent: #ffffff;
+            --dark: #1a1a1a;
+            --darker: #000000;
+            --light: #ffffff;
+            --gray: #cccccc;
+            --success: #00cc88;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/img4.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 0; /* Remove padding to eliminate space at top */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles - Sticky at top with no space */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(15, 11, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(108, 28, 230, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 30px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Full-screen Image Slideshow */
+        .slideshow {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .slide-content h2 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--light) 60%, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(108, 28, 230, 0.3);
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(108, 28, 230, 0.4);
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+        }
+
+        .slideshow-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .nav-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background-color: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .slideshow-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .slideshow-arrow:hover {
+            background: rgba(108, 28, 230, 0.8);
+        }
+
+        .slideshow-arrow.prev {
+            left: 30px;
+        }
+
+        .slideshow-arrow.next {
+            right: 30px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            background: radial-gradient(circle at 20% 50%, rgba(108, 28, 230, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 224, 198, 0.1) 0%, transparent 50%);
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Subscription Form */
+        .subscription-form {
+            background: rgba(15, 11, 30, 0.85);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(108, 28, 230, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscription-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-title i {
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 28, 230, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .plan-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .plan-option {
+            padding: 18px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plan-option:hover {
+            border-color: var(--primary);
+        }
+
+        .plan-option.selected {
+            border-color: var(--accent);
+            background: rgba(0, 224, 198, 0.05);
+        }
+
+        .plan-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .plan-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .plan-period {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .btn-subscribe {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-subscribe:hover {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 28, 230, 0.3);
+        }
+
+        .form-note {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: transparent;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(108, 28, 230, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(108, 28, 230, 0.1) 0%, rgba(0, 224, 198, 0.05) 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(15, 11, 30, 0.7);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 70px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Form Status Messages */
+        .form-status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .form-status.success {
+            background-color: rgba(0, 204, 136, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(0, 204, 136, 0.3);
+            display: block;
+        }
+
+        .form-status.error {
+            background-color: rgba(255, 50, 50, 0.1);
+            color: #ff3232;
+            border: 1px solid rgba(255, 50, 50, 0.3);
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .slide-content h2 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .slide-content h2 {
+                font-size: 3rem;
+            }
+            
+            .slide-content p {
+                font-size: 1.3rem;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content p {
+                font-size: 1.1rem;
+            }
+            
+            .slideshow-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .slideshow-arrow.prev {
+                left: 15px;
+            }
+            
+            .slideshow-arrow.next {
+                right: 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .slide-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .subscription-form {
+                padding: 30px 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Sticky at top with no space -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="images/logo2.png" style="width: 100%; height: 100%;">
+                </div>
+                <div class="logo-text">IGNOTO</div>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#home">Nyumbani</a>
+                <a href="#features">Maelezo</a>
+                <a href="#testimonials">Maoni ya wateja</a>
+                <a href="#subscription">Jisajili</a>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Full-screen Image Slideshow -->
+    <section class="slideshow" id="home">
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="images/img1.jpg" alt="Data Analytics Dashboard" class="slide-image">
+                <div class="slide-content">
+                    <h2>Utabiri wa Odds za Kila Siku (Premium)</h2>
+                    <p>Tumia nguvu ya uchanganuzi wa hali ya juu na ujifunzaji wa mashine kupata utabiri sahihi wa kila siku unaotumwa moja kwa moja kwenye kikasha chako cha barua pepe.</p>
+                    <!--<a href="#subscription" class="cta-button">Jiunge na Usajili Leo</a>-->
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="images/img2.jpg" alt="Sports Betting" class="slide-image">
+                <div class="slide-content">
+                    <h2>
+                      Fikia kiwango cha juu cha ushindi wako
+                    </h2>
+                    <p>Jiunge na maelfu ya wabashiri wanaoamini Ignoto kwa odds bora za kila siku zenye mafanikio yaliyothibitishwa.</p>
+                   <!-- <a href="#subscription" class="cta-button">Jipatie makali ya ushindi</a>-->
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="images/img7.jpeg">
+                <div class="slide-content">
+                    <h2>Uchambuzi Unaotokana na Takwimu Unaowasilishwa Kila Siku</h2>
+                    <p>Kwa kuchambua maelfu ya pointi za data, algoriti zetu zinakuletea utabiri sahihi zaidi wa odds popote ulipo.</p>
+                    <!--<a href="#subscription" class="cta-button">Pata Utabiri wa Wataalamu</a>-->
+                </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="slide">
+                <img src="images/img6.jpeg" alt="Success Celebration" class="slide-image">
+                <div class="slide-content">
+                    <h2>Kiwango cha Kuridhika kwa Wateja 94.7%</h2>
+                    <p>Jiunge na jumuiya yetu ya wanajisajili waliofurahishwa ambao wameboresha mikakati yao ya kubashiri kwa msaada wa Ignoto.</p>
+                    <!--<a href="#subscription" class="cta-button">Jiunge na Timu ya Ushindi</a>-->
+                </div>
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button class="slideshow-arrow prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slideshow-arrow next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Navigation Dots -->
+            <div class="slideshow-nav">
+                <div class="nav-dot active" data-slide="0"></div>
+                <div class="nav-dot" data-slide="1"></div>
+                <div class="nav-dot" data-slide="2"></div>
+                <div class="nav-dot" data-slide="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero" id="subscription">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Pata Premium Odds za Kila Siku Moja kwa Moja kwenye Barua Pepe Yako</h1>
+                <p>Jiunge na <span class="highlight">maelfu ya wabashiri waliofanikiwa</span> wanaopokea utabiri wetu wa odds wa kipekee unaotokana na takwimu kila siku. Pata faida unayohitaji kuongeza ushindi wako.</p>
+                
+                <div class="stats-grid" style="margin-top: 40px;">
+                    <div class="stat-item">
+                      <p>Asilimia za Wateja kuridhishwa</p>
+                        <h3>94.7%</h3>
+                        
+                    </div>
+                    <div class="stat-item">
+                        <p>Waliojiunga nasi</p>
+                        <h3>999+</h3>
+                        
+                    </div>
+                    <div class="stat-item">
+                        <p>Tabiri za mechi za Kila Siku</p>
+                        <h3>30+</h3>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subscription-form">
+                <div class="form-title">
+                    <i class="fas fa-envelope-open-text"></i>
+                    Anza Kujisajili
+                </div>
+                
+                <!-- Formspree Form -->
+                <form id="ignoto-form" action="https://formspree.io/f/mdalkzed" method="POST">
+                    <div id="form-status" class="form-status"></div>
+                    
+                    <div class="form-group">
+                        <label for="email">Anwani ya Barua Pepe</label>
+                        <input type="email" id="email" name="email" placeholder="barua pepe@gmail.com" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Jina Kamili</label>
+                            <input type="text" id="name" name="name" placeholder="Dully Maxter" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Namba ya Simu</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+255 (0) 749 246 701" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Chagua Mpango Wako</label>
+                        <div class="plan-selector">
+                            <div class="plan-option selected" data-plan="monthly">
+                                <div class="plan-name">Kila Mwezi</div>
+                                <div class="plan-price">15,000 TZS<span class="plan-period">/mwezi</span></div>
+                            </div>
+                            <div class="plan-option" data-plan="quarterly">
+                                <div class="plan-name">Kila Robo Mwaka</div>
+                                <div class="plan-price">35,000 TZS<span class="plan-period">/miezi 3</span></div>
+                                <div style="font-size: 0.8rem; color: var(--accent); margin-top: 5px;">Okoa 14%</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selected-plan" name="plan" value="monthly">
+                    </div>
+                    
+                    <button type="submit" class="btn-subscribe">
+                        <i class="fas fa-lock"></i>
+                        Jisajili Sasa
+                    </button>
+                    
+                    <div class="form-note">
+                        Taarifa zako ziko salama. Unaweza kufuta muda wowote.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Kwa Nini Uchague Ignoto?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Utoaji wa Haraka Sana</h3>
+                    <p>Pokea utabiri wako wa odds wa kila siku kufikia saa 3:00 asubuhi kila siku, ukikupa muda wa kutosha kupanga kubashiri kwako.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Uchambuzi Unaotokana na Takwimu</h3>
+                    <p>Wataalam wetu wanachambua maelfu ya pointi za takwimu ili kutoa utabiri sahihi zaidi wa odds unaopatikana.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Salama na Faragha</h3>
+                    <p>Taarifa zako na miondoko ya kubashiri ziko salama na faragha kwa kutumia usalama wa hali ya juu.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Usaidizi wa Wataalamu</h3>
+                    <p>Ungana na timu yetu ya wataalamu wa kubashiri kwa maswali au ushauri wa mikakati yoyote.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Waliopo Wanasema Nini</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Tangu nijisajili na Ignoto, kiwango changu cha mafanikio ya kubashiri kimeongezeka sana. Odds za kila siku ni sahihi sana na maarifa hayo ni ya thamani isiyo kifani."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div class="author-info">
+                            <h4>Allen Khan</h4>
+                            <p>Amejisajili kwa mwaka 1</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Mpango wa robo mwaka umeniokoa sana yani duuh. Nimezalisha mara 5 zaidi ya hela nilolipia ndani ya miezi 4 tu."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MA</div>
+                        <div class="author-info">
+                            <h4>Maxter</h4>
+                            <p>Mbashiri Mtaalamu</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Mwanzo nilikuwa na shaka, lakini nilivojaribu mwezi mmoja nikashawishika aisee. Email za kila siku ni fupi lakini odds za uhakika. Ninapendekeza sana"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">E</div>
+                        <div class="author-info">
+                            <h4>Elun</h4>
+                            <p>Amejisajili kwa miezi 6</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ignoto</h3>
+                    <p>Tunatoa utabiri wa odds za kila siku za tangu 2020. Tunaaminika na maelfu ya watu duniani kote.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Nyumbani</a></li>
+                        <li><a href="#features">Maelezo</a></li>
+                        <li><a href="#testimonials">Maoni ya wateja</a></li>
+                        <li><a href="#subscription">Jisajili</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kifungu cha Sheria</h3>
+                    <ul class="footer-links">
+                        <li><a href="masharti ya huduma/">Masharti ya Huduma</a></li>
+                        <li><a href="sera ya faragha/">Sera ya Faragha</a></li>
+                        <li><a href="sera ya marejesho/">Sera ya Kurudishiwa Pesa</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:maxterhamid@gmail.com">maxterhamid@gmail.com</a></li>
+                        <li><a href="tel:+255749246701">+255 (0) 749 246 701</a></li>
+                        <li><a href="https://www.instagram.com/xr_incognito/">instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 Ignoto. Haki zote zimehifadhiwa. Huduma hii ni kwa watumiaji wenye umri wa miaka 18 au zaidi pekee.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Slideshow Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const prevBtn = document.querySelector('.slideshow-arrow.prev');
+        const nextBtn = document.querySelector('.slideshow-arrow.next');
+        const slideInterval = 6000; // 6 seconds for auto slideshow
+        
+        // Function to show a specific slide
+        function showSlide(index) {
+            // Ensure index is within bounds
+            if (index >= slides.length) index = 0;
+            if (index < 0) index = slides.length - 1;
+            
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show the selected slide
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+        
+        // Next slide function
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Previous slide function
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // Event listeners for arrows
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Event listeners for dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetAutoSlide(); // Reset the autoplay timer when manually changing slides
+            });
+        });
+        
+        // Auto slide functionality
+        let autoSlideInterval;
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, slideInterval);
+        }
+        
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+        
+        // Start autoplay
+        startAutoSlide();
+        
+        // Pause autoplay on hover
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        slideshowContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        slideshowContainer.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+
+        // Plan selector functionality
+        document.querySelectorAll('.plan-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.plan-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Update hidden input value
+                const selectedPlan = this.getAttribute('data-plan');
+                document.getElementById('selected-plan').value = selectedPlan;
+            });
+        });
+
+        // Form submission handling
+        const form = document.getElementById('ignoto-form');
+        const formStatus = document.getElementById('form-status');
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Disable submit button to prevent multiple submissions
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
+            
+            // Get form data
+            const formData = new FormData(form);
+            
+            try {
+                // Replace with your actual Formspree endpoint
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    formStatus.textContent = 'Thank you! Your subscription has been processed. Check your email for confirmation.';
+                    formStatus.className = 'form-status success';
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Reset plan selector to default
+                    document.querySelectorAll('.plan-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    document.querySelector('.plan-option[data-plan="monthly"]').classList.add('selected');
+                    document.getElementById('selected-plan').value = 'monthly';
+                    
+                    // Scroll to form status
+                    formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                formStatus.textContent = 'Oops! There was a problem submitting your form. Please try again.';
+                formStatus.className = 'form-status error';
+                
+                // Scroll to form status
+                formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } finally {
+                // Re-enable submit button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Hide status message after 5 seconds
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            
+            // Adjust menu for mobile
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '20px';
+                navLinks.style.backgroundColor = 'var(--dark)';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderRadius = '10px';
+                navLinks.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                navLinks.style.border = '1px solid rgba(108, 28, 230, 0.3)';
+                navLinks.style.zIndex = '1000';
+                navLinks.style.width = '200px';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Account for sticky header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

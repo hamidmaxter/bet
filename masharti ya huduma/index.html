@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignoto Incognito - Masharti na Huduma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #1a1a1a;
+            --gray-light: #f5f5f5;
+            --gray-mid: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 30px 0;
+            border-bottom: 2px solid var(--black);
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: var(--black);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .language-selector {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .document-header {
+            margin-bottom: 50px;
+            text-align: center;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 30px;
+        }
+
+        .document-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .document-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--gray-mid);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .document-date {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .section-content ul, .section-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: var(--gray-light);
+            padding: 2px 5px;
+            font-weight: 500;
+        }
+
+        /* Definition Lists */
+        .definition-list {
+            margin-bottom: 30px;
+        }
+
+        .definition-term {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .definition-description {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--gray-mid);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray-dark);
+            color: var(--white);
+            padding: 40px 0;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-info {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            header {
+                position: static;
+                box-shadow: none;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 30px 0;
+            }
+            
+            footer {
+                background-color: var(--white);
+                color: var(--black);
+                border-top: 1px solid var(--black);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .document-title {
+                font-size: 32px;
+            }
+            
+            .document-subtitle {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .document-title {
+                font-size: 28px;
+            }
+            
+            .section-content {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    
+                    <div>
+                        <div class="logo-text">IGNOTO</div>
+                        <div class="tagline">Timu ya Wataalamu wa uchambuzi wa takwimu za mpira</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="document-header">
+                <h1 class="document-title">MASHARTI NA HUDUMA</h1>
+                <p class="document-subtitle">Hii ni mkataba rasmi kati ya Ignoto (Timu ya Wataalamu wa Takwimu) na mteja. Tafadhali soma kwa makini kabla ya kutumia huduma zetu.</p>
+                <div class="document-date">Toleo la 3.8.2 | Tarehe: 9 Januari 2025</div>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2 class="section-title">1. UTANGULIZI NA UFASILI</h2>
+                <div class="section-content">
+                    <p>Kwa kutumia huduma za <span class="highlight">Ignoto</span> (kutaja hapa chini kama "sisi", "yetu", au "kampuni"), unakubali kufuata masharti na masharti yaliyowekwa hapa chini. Tafadhali soma makini masharti haya kabla ya kujiandikisha au kutumia huduma zetu.</p>
+                    
+                    <div class="definition-list">
+                        <div class="definition-term">"Ignoto"</div>
+                        <div class="definition-description">Inamaanisha timu ya wataalamu wa takwimu inayotoa usindikizi wa takwimu za kamari kwa njia ya kitaalamu na kisayansi.</div>
+                        
+                        <div class="definition-term">"Huduma"</div>
+                        <div class="definition-description">Inahusu usambazaji wa takwimu, uchambuzi, na usindikizi wa odds za kamari kupitia njia mbalimbali ikiwemo barua pepe, programu, au njia nyingine za kidijitali.</div>
+                        
+                        <div class="definition-term">"Mteja"</div>
+                        <div class="definition-description">Ni mtu yeyote anayejiandikisha au kutumia huduma zetu, iwe kwa malipo au bure.</div>
+                        
+                        <div class="definition-term">"Masharti"</div>
+                        <div class="definition-description">Yanahusu masharti na masharti yote yaliyowekwa kwenye hati hii ya Masharti na Huduma.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2 class="section-title">2. HALI YA KUHUDUMIA</h2>
+                <div class="section-content">
+                    <p>Huduma za Ignoto zinatolewa kwa wateja walio na umri wa miaka 18 na zaidi. Kwa kutumia huduma zetu, unathibitisha na kukubali kuwa:</p>
+                    
+                    <ol>
+                        <li>Una umri wa miaka 18 na zaidi na uko chini ya usimamizi wa kisheria wa nchi yako ya makazi.</li>
+                        <li>Kamari inaruhusiwa na halali katika nchi yako ya makazi.</li>
+                        <li>Unatambua kuwa kamari ina hatari ya kupoteza pesa na kuwa unajitolea kufanya maamuzi yako mwenyewe.</li>
+                        <li>Unakubali kuwa huduma zetu ni za kutoa taarifa tu na sio ushauri wa kifedha au wa kisheria.</li>
+                    </ol>
+                    
+                    <p>Ignoto Incognito haiwajibiki kwa matumizi ya taarifa tulizotoa. Mteja anachukua hatari kamili ya matumizi ya taarifa hiyo na matokeo yake.</p>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2 class="section-title">3. MALIPO NA MATOLEO</h2>
+                <div class="section-content">
+                    <p>Ignoto Incognito inatoa huduma kwa njia mbili kuu:</p>
+                    
+                    <p><strong>3.1 Toleo la Premium (Malipo):</strong> Huduma kamili na ya kina inatolewa kwa wateja waliolipia usajili. Bei za usajili zinaweza kubadilika na zinatangazwa kwenye tovuti yetu wakati wote.</p>
+                    
+                    <p><strong>3.2 Mbinu za Malipo:</strong> Tunakubali malipo kupitia njia mbalimbali zilizowekwa. Malipo yote yanapaswa kufanywa kabla ya kuanza kutumia huduma za premium.</p>
+                    
+                    <p><strong>3.3 Marejesho ya Fedha:</strong> Kwa kawaida hatukubali marejesho ya fedha baada ya kuanza kutumia huduma. Hata hivyo, tunaweza kuzingatia kesi maalum kulingana na hali <a href="sera ya marejesho/">ona zaidi</a> kuhusu sera ya marejesho</p>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2 class="section-title">4. USALAMA WA TAARIFA</h2>
+                <div class="section-content">
+                    <p>Ignoto Incognito inachukua usalama wa taarifa za wateja kwa uzito. Tunatumia mbinu za kisasa za usalama wa kidijitali kulinda taarifa zako.</p>
+                    
+                    <p><strong>4.1 Ulinzi wa Data:</strong> Tunazingatia siri ya taarifa za wateja wetu. Hatuuzi, haushiriki, au kutoa taarifa za kibinafsi kwa wahusika wengine bila idhini yako, isipokuwa ikiwa imehitajika kisheria.</p>
+                    
+                    <p><strong>4.2 Hifadhi ya Data:</strong> Taarifa zako zinahifadhiwa kwenye seva salama na zinafikliwa na wafanyakazi walioidhinishwa tu.</p>
+                    
+                    <p><strong>4.3 Udhibiti wa Wateja:</strong> Kama mteja, una haki ya kufuta akaunti yako wakati wowote. Taarifa zako zitatefutwa kwa usalama baada ya kufutwa kwa akaunti.</p>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2 class="section-title">5. HAKI ZA MILIKI</h2>
+                <div class="section-content">
+                    <p>Yote yaliyomo katika huduma za Ignoto, ikiwemo algorithimu, mifumo, uchambuzi, na takwimu, ni mali ya Ignoto Incognito na wanasiasa wake.</p>
+                    
+                    <p><strong>5.1 Hakimiliki:</strong> Nyenzo zote tulizotoa, iwe kwa njia ya maandishi, picha, grafu, au programu, zinahifadhiwa chini ya sheria za hakimiliki.</p>
+                    
+                    <p><strong>5.2 Matumizi ya Kibiashara:</strong> Hairuhusiwi kutumia, kunakili, kusambaza, au kuuza nyenzo zetu kwa madhumuni ya kibiashara bila idhini yetu ya maandishi.</p>
+                    
+                    <p><strong>5.3 Matumizi ya Kibinafsi:</strong> Wateja wanaruhusiwa kutumia nyenzo zetu kwa matumizi yao binafsi tu, na hawapaswi kuzishiriki na watu wasioidhinishwa.</p>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2 class="section-title">6. MAKATAZO NA VIKWAZO</h2>
+                <div class="section-content">
+                    <p>Unakataa kutumia huduma za Ignoto Incognito kwa:</p>
+                    
+                    <ul>
+                        <li>Kuchangia katika vitendo vya kinyume na sheria au desturi za nchi yako.</li>
+                        <li>Kujaribu kuvunja usalama wa mifumo yetu.</li>
+                        <li>Kusambaza virusi, programu hatari, au kuzuia utendaji wa huduma zetu.</li>
+                        <li>Kutumia huduma zetu kwa madhumuni ya udanganyifu au uhalifu.</li>
+                        <li>Kushiriki nyenzo zetu na watu wasioidhinishwa.</li>
+                    </ul>
+                    
+                    <p>Ignoto Incognito ina haki ya kusitisha au kufuta akaunti ya mteja yeyote anayekiuka masharti haya, bila taarifa ya ziada na bila malipo ya marejesho.</p>
+                </div>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="section">
+                <h2 class="section-title">7. UWANJA WA JURISDIKSHENI</h2>
+                <div class="section-content">
+                    <p>Masharti haya yanatawaliwa na kufasiriwa kulingana na sheria za Tanzania, isipokuwa ikiwa mteja anapanga kwenye nchi tofauti na sheria za nchi hiyo zitatumika.</p>
+                    
+                    <p>Mazungumzo yoyote yanayotokana na masharti haya au matumizi ya huduma zetu yatatatuliwa kwa njia ya maridhiano. Ikiwa maridhiano haitawezekana, mzozo utasuluhishwa mahakamani husika kulingana na sheria za nchi husika.</p>
+                </div>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2 class="section-title">8. BADILIKO LA MASHARTI</h2>
+                <div class="section-content">
+                    <p>Ignoto ina haki ya kubadilisha masharti haya wakati wowote. Tutawatangazia wateja kuhusu mabadiliko makubwa kupitia njia mbalimbali kama barua pepe au matangazo kwenye tovuti yetu.</p>
+                    
+                    <p>Kuendelea kutumia huduma zetu baada ya mabadiliko hayo kunamaanisha kuwa unakubali masharti mapya. Ikiwa hukubali masharti mapya, lazima usimamishe matumizi ya huduma zetu mara moja.</p>
+                </div>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="section">
+                <h2 class="section-title">9. MAWASILIANO</h2>
+                <div class="section-content">
+                    <p>Kwa maswali, maoni, au malalamiko yoyote kuhusu Masharti na Huduma, wasiliana nasi kupitia:</p>
+                    
+                    <p><strong>Barua pepe:</strong> maxterhamid@gmail.com</p>
+                    <p><strong>Simu:</strong> +255 (0) 749 246 701</p>
+                    
+                    
+                    <p>Kwa dharura, tumia njia za mawasiliano zilizoonyeshwa kwenye tovuti yetu rasmi.</p>
+                </div>
+            </div>
+
+            <!-- Section 10 -->
+            <div class="section">
+                <h2 class="section-title">10. IDHINI</h2>
+                <div class="section-content">
+                    <p>Kwa kutumia huduma za Ignoto, unakubali na kuthibitisha kuwa:</p>
+                    
+                    <ol>
+                        <li>Umesoma na kuelewa masharti haya yote.</li>
+                        <li>Unakubali kufuata masharti haya kikamilifu.</li>
+                        <li>Unatambua kuwa huduma zetu ni za kutoa taarifa tu na sio ahadi ya ushindi wowote.</li>
+                        <li>Unajua kuwa kamari ina hatari na unaweza kupoteza pesa.</li>
+                        <li>Unakubali kuwa Ignoto Incognito haiwajibiki kwa hasara yoyote inayotokana na matumizi ya taarifa tulizotoa.</li>
+                    </ol>
+                    
+                    <p><strong>Onyo Muhimu:</strong> Kamari inaweza kuwa na madhara. Chukua hatua za kujizuia na kamari kwa uangalifu. Iwapo una matatizo ya kamari, tafuta ushauri wa kitaalamu.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">INCOGNITO</div>
+                <div class="footer-info">
+                    <p>© 2026 Incognito. Haki zote zimehifadhiwa.</p>
+                    <p>Huduma ya Kitaalamu ya Uchambuzi wa Takwimu za Kamari</p>
+                    <p>Mabadiliko ya Masharti yanahusiana na toleo la 1.1.7, tarehe 9 Januari 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to handle printing
+        function printDocument() {
+            window.print();
+        }
+
+        // Add print button dynamically for non-print view
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.createElement('button');
+            printButton.innerHTML = '<i class="fas fa-print"></i> Print/Download';
+            printButton.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background-color: #000;
+                color: #fff;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                z-index: 99;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            `;
+            
+            printButton.onclick = printDocument;
+            printButton.onmouseover = function() {
+                this.style.backgroundColor = '#333';
+            };
+            printButton.onmouseout = function() {
+                this.style.backgroundColor = '#000';
+            };
+            
+            document.body.appendChild(printButton);
+            
+            // Add responsive behavior for print button
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    printButton.style.bottom = '20px';
+                    printButton.style.right = '20px';
+                    printButton.style.padding = '10px 16px';
+                    printButton.style.fontSize = '13px';
+                } else {
+                    printButton.style.bottom = '30px';
+                    printButton.style.right = '30px';
+                    printButton.style.padding = '12px 20px';
+                    printButton.style.fontSize = '14px';
+                }
+            });
+            
+            // Trigger initial resize
+            window.dispatchEvent(new Event('resize'));
+        });
+    </script>
+</body>
+</html>
