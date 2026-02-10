@@ -762,6 +762,62 @@
                 font-size: 2rem;
             }
         }
+
+        /* Prediction Box Styles */
+        .prediction-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 18px 0;
+        }
+
+        .prediction-box {
+            width: 90%;
+            max-width: 820px;
+            border: 2px solid #c62828; /* narrow red border */
+            border-radius: 8px;
+            padding: 18px 20px;
+            background: rgba(0,0,0,0.75); /* slightly opaque */
+            color: var(--light);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+        }
+
+        .prediction-box .prediction-title {
+            text-align: center;
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+            color: #ffdede;
+            letter-spacing: 0.5px;
+        }
+
+        .prediction-box .prediction-sub {
+            text-align: center;
+            display: block;
+            font-size: 1.02rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin: 6px 0 10px 0;
+        }
+
+        .prediction-box p {
+            font-size: 0.98rem;
+            color: var(--gray);
+            margin: 6px 0;
+            line-height: 1.4;
+        }
+
+        .prediction-cta-wrap { text-align: center; margin-top: 12px; }
+
+        .prediction-cta {
+            display: inline-block;
+            padding: 10px 18px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+        }
     </style>
 </head>
 <body>
@@ -847,6 +903,21 @@
                 <div class="nav-dot" data-slide="1"></div>
                 <div class="nav-dot" data-slide="2"></div>
                 <div class="nav-dot" data-slide="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Box -->
+    <section class="prediction-wrapper" aria-label="Free daily predictions">
+        <div class="prediction-box container">
+            <h3 class="prediction-title">1 game free daily predictions</h3>
+            <p class="prediction-sub">10 Feb 2026</p>
+            <p>Both Teams To score:</p>
+            <p>Dumbravita vs Arges</p>
+            <p>@ 2.05 odds</p>
+            <p>Romania Cup - Romania</p>
+            <div class="prediction-cta-wrap">
+                <a href="#subscription" class="prediction-cta">subscribe for more</a>
             </div>
         </div>
     </section>
