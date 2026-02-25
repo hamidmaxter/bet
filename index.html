@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>i love you lary ❤️</title>
     <!-- Font Awesome for hearts & icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -25,6 +25,7 @@
             justify-content: center;
             position: relative;
             overflow-x: hidden;
+            padding: 20px;
         }
 
         /* Floating hearts container */
@@ -77,13 +78,14 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 220, 220, 0.2) inset;
             border: 1px solid rgba(255, 240, 240, 0.3);
             text-align: center;
-            max-width: 90%;
+            max-width: 700px;
+            width: 100%;
             transition: transform 0.3s ease;
             animation: card-appear 1.5s ease-out;
         }
 
         .message-card:hover {
-            transform: scale(1.02);
+            transform: scale(1.01);
         }
 
         @keyframes card-appear {
@@ -161,6 +163,107 @@
             color: #ffb3c6;
         }
 
+        /* Reply section */
+        .reply-section {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(255, 240, 240, 0.3);
+        }
+
+        .reply-title {
+            font-size: 1.5rem;
+            color: #ffefef;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .reply-title i {
+            color: #ffb3c6;
+            font-size: 1.8rem;
+        }
+
+        .reply-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reply-input {
+            flex: 2 1 250px;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            color: white;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 200, 210, 0.5);
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .reply-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .reply-input:focus {
+            border-color: #ffb3c6;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 20px rgba(255, 150, 180, 0.5);
+        }
+
+        .reply-button {
+            background: #ff99aa;
+            border: none;
+            border-radius: 60px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c1a2e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            border-bottom: 4px solid #b24e6a;
+        }
+
+        .reply-button i {
+            font-size: 1.4rem;
+            color: white;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+
+        .reply-button:hover {
+            transform: translateY(-5px);
+            background: #ffb3c6;
+            border-bottom-color: #9b3b55;
+        }
+
+        .reply-button:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .privacy-note {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: rgba(255, 240, 240, 0.6);
+        }
+
+        .privacy-note i {
+            margin: 0 4px;
+        }
+
         /* interactive heart burst */
         .burst-heart {
             position: fixed;
@@ -194,6 +297,10 @@
                 margin-top: 1.5rem;
                 font-size: 0.9rem;
             }
+            .reply-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -212,41 +319,55 @@
         <div class="click-hint" id="clickHint">
             <i class="fas fa-heart"></i> click anywhere for a surprise <i class="fas fa-heart"></i>
         </div>
+
+        <!-- Reply section (WhatsApp) -->
+        <div class="reply-section">
+            <div class="reply-title">
+                <i class="fas fa-heart"></i> send your reply <i class="fas fa-heart"></i>
+            </div>
+            <div class="reply-box">
+                <input type="text" class="reply-input" id="replyMessage" placeholder="Type your message... (e.g. I love you too)">
+                <button class="reply-button" id="sendReplyBtn">
+                    <i class="fab fa-whatsapp"></i> Send
+                </button>
+            </div>
+            <div class="privacy-note">
+                <i class="fas fa-lock"></i> opens WhatsApp • your number stays private <i class="fas fa-lock"></i>
+            </div>
+        </div>
     </div>
 
     <script>
         (function() {
+            // =============================================
+            // CONFIGURATION: Set your WhatsApp number here
+            // =============================================
+            const YOUR_WHATSAPP_NUMBER = "1234567890";  // <-- REPLACE WITH YOUR ACTUAL NUMBER (include country code, no '+' or spaces)
+            // Example: "441234567890" for UK, "15551234567" for US
+
             // create floating hearts in the background
             const heartsContainer = document.getElementById('heartsContainer');
             const heartSymbols = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🤍', '💖', '💗', '💓', '💕', '♡'];
             
-            // create 40 hearts with random positions, delays, and sizes
             for (let i = 0; i < 40; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
-                // random heart symbol
                 const randomHeart = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
                 heart.textContent = randomHeart;
                 
-                // random left position (0-100%)
                 heart.style.left = Math.random() * 100 + '%';
-                // random bottom position (start off screen at varying heights)
                 heart.style.bottom = -20 + Math.random() * 30 + 'px';
-                // random size
-                const size = 0.8 + Math.random() * 2; // between 0.8rem and 2.8rem
+                const size = 0.8 + Math.random() * 2;
                 heart.style.fontSize = size + 'rem';
-                // random animation duration between 6s and 18s
                 const duration = 6 + Math.random() * 12;
                 heart.style.animation = `float ${duration}s infinite ease-in-out`;
-                // random delay
                 heart.style.animationDelay = Math.random() * 10 + 's';
-                // random opacity range
                 heart.style.opacity = 0.4 + Math.random() * 0.4;
                 
                 heartsContainer.appendChild(heart);
             }
 
-            // interactive feature: click anywhere to create a burst heart
+            // interactive burst hearts on click
             const body = document.body;
             const hint = document.getElementById('clickHint');
             
@@ -259,17 +380,14 @@
                 burst.style.transform = 'translate(-50%, -50%)';
                 document.body.appendChild(burst);
                 
-                // remove after animation ends
                 setTimeout(() => {
                     burst.remove();
                 }, 1200);
             }
 
             body.addEventListener('click', function(e) {
-                // create heart at click position
                 createBurstHeart(e.clientX, e.clientY);
                 
-                // also change the hint text for a moment
                 const originalText = hint.innerHTML;
                 hint.innerHTML = '<i class="fas fa-heart" style="color:#ffb3c6;"></i> i love you! <i class="fas fa-heart" style="color:#ffb3c6;"></i>';
                 setTimeout(() => {
@@ -277,23 +395,60 @@
                 }, 800);
             });
 
-            // optional: add a few hearts on touch for mobile
+            // touch support
             if ('ontouchstart' in window) {
                 body.addEventListener('touchstart', function(e) {
                     const touch = e.touches[0];
                     createBurstHeart(touch.clientX, touch.clientY);
-                    e.preventDefault(); // avoid double click from emulating mouse
                 }, { passive: false });
             }
 
-            // Also make the hint clickable specifically
             hint.addEventListener('click', function(e) {
-                e.stopPropagation();  // prevent double burst (already handled by body)
-                // but we already have body handler, so we can just let it propagate
-                // but we'll create an extra one at hint center for fun
+                e.stopPropagation();
                 const rect = hint.getBoundingClientRect();
                 createBurstHeart(rect.left + rect.width/2, rect.top + rect.height/2);
             });
+
+            // ========== WHATSAPP REPLY FUNCTION ==========
+            const replyInput = document.getElementById('replyMessage');
+            const sendBtn = document.getElementById('sendReplyBtn');
+
+            sendBtn.addEventListener('click', function() {
+                let message = replyInput.value.trim();
+                if (message === '') {
+                    message = '❤️ i love you too ❤️';  // default romantic reply if empty
+                }
+                
+                // Encode the message for URL
+                const encodedMessage = encodeURIComponent(message);
+                
+                // Build the WhatsApp link
+                const whatsappLink = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+                
+                // Open in a new tab (or same) – this will trigger WhatsApp
+                window.open(whatsappLink, '_blank');
+                
+                // Optional: show a little heart burst at button
+                const rect = sendBtn.getBoundingClientRect();
+                createBurstHeart(rect.left + rect.width/2, rect.top + rect.height/2);
+                
+                // Clear the input after sending? Not necessary, but we can
+                // replyInput.value = ''; // if you want to clear
+            });
+
+            // Allow pressing Enter to send
+            replyInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendBtn.click();
+                }
+            });
+
+            // tiny note: if the number is not set, alert the user to change it
+            if (YOUR_WHATSAPP_NUMBER === "+255749246701") {
+                console.warn("Please set your WhatsApp number in the code (variable YOUR_WHATSAPP_NUMBER).");
+                // Optionally show a friendly reminder in the console, but don't interrupt.
+            }
         })();
     </script>
 </body>
